@@ -2,6 +2,7 @@
 
 var SONGS = require('../../testMusic');
 var React = require('react');
+var request = require('superagent');
 
 var SongArtist = React.createClass({
 	render: function() {
@@ -25,6 +26,7 @@ var SongInfo = React.createClass({
 	render: function() {
 		var rows = [];
 		var lastArtist = null;
+
 		this.props.songs.forEach(function(song) {
 			if (song.artist !== lastArtist) {
         rows.push(<SongArtist artist={song.artist} key={song.artist} />);
@@ -63,17 +65,28 @@ var ArtistSearch = React.createClass({
 		return {songs: [], title: "Songs :"};
 	},
 
+	componentDidMount: function() {
+		request
+			.get('/api/songs')
+			.end(function(err, res) {
+				if (err) console.log(err);
+				this.setState({songs: res.body})
+				this.props.songs = this.state.songs;
+			}.bind(this));
+
+	},
+
 	render: function() {
 		//console.log(this.props.songs);
 		return (
 			<div>
 				<SearchBar />
 				<br />
-				<SongInfo songs={this.props.songs} />
+				<SongInfo songs={this.state.songs} />
 			</div>
 		);
 	}
 });
 
 
-React.render(<ArtistSearch songs={SONGS} />, document.body);
+React.render(<ArtistSearch />, document.body);
