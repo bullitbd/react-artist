@@ -1,6 +1,6 @@
 'use strict';
 
-var SONGS = require('../../testMusic');
+//var SONGS = require('../../testMusic');
 var React = require('react');
 var request = require('superagent');
 

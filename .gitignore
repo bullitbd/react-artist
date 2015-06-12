@@ -5,4 +5,5 @@ consolehistory
 **/build
 **/bundle.js
 **/*.log
-	
+**/testMusic.js*
+
