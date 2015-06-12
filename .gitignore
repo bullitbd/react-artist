@@ -1,0 +1,8 @@
+**/node_modules
+**/data
+**/db
+consolehistory
+**/build
+**/bundle.js
+**/*.log
+	

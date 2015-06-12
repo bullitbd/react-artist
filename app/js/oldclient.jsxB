@@ -1,0 +1,32 @@
+'use strict';
+
+var React = require('react');
+var Songs = require('./components/songs.jsx');
+var request = require('superagent');
+
+var App = React.createClass({
+	getInitialState: function() {
+		return {songs: [], title: "Songs :"};
+	},
+
+	componentDidMount: function() {
+		request
+			.get('/api/songs')
+			.end(function(err, res) {
+				if (err) console.log(err);
+				this.setState({songs: res.body})
+			}.bind(this));
+	},
+
+	render: function() {
+		return (
+			<main>
+				<h1>{this.state.title}</h1>
+				<NoteList data={this.state.notes} />
+			</main>
+		)
+	}
+
+});
+
+React.render(<App />, document.body);
