@@ -1,0 +1,15 @@
+body {
+  font-family:"Gill Sans MT", "Helvetica Neue", sans serif;
+}
+th {
+  text-align:left;
+}
+td {
+  padding-right:30px;
+}
+.artistTitle {
+  text-align:center;
+  font-style: italic;
+  color:#666;
+  padding: 10px 0;
+}

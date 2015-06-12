@@ -3,10 +3,11 @@
 //var SONGS = require('../../testMusic');
 var React = require('react');
 var request = require('superagent');
+var artistComp = require('../object_compare');
 
 var SongArtist = React.createClass({
 	render: function() {
-		return (<tr><th colSpan="2">{this.props.artist}</th></tr>);
+		return (<tr><th colSpan="3" className="artistTitle">{this.props.artist}</th></tr>);
 	}
 });
 
@@ -70,8 +71,9 @@ var ArtistSearch = React.createClass({
 			.get('/api/songs')
 			.end(function(err, res) {
 				if (err) console.log(err);
+				res.body.sort(artistComp);
 				this.setState({songs: res.body})
-				this.props.songs = this.state.songs;
+				console.log(res.body);
 			}.bind(this));
 
 	},

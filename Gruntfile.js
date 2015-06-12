@@ -37,10 +37,10 @@ module.exports = function(grunt) {
         cwd: 'app/',
         expand: true,
         flatten: false,
-        src: '**/*.html',
+        src: ['**/*.html', '**/*.css'],
         dest: 'build/',
         filter: 'isFile'
-      }
+      },
     },
 
     clean: {
