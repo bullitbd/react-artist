@@ -3,13 +3,22 @@ body {
 }
 th {
   text-align:left;
+  padding: 0px 10px 10px 0px;
 }
 td {
-  padding-right:30px;
+  padding-right:10px;
 }
 .artistTitle {
   text-align:center;
   font-style: italic;
   color:#666;
-  padding: 10px 0;
+  padding: 15px 0;
 }
+.title {
+  font-size:1.2em;
+  font-weight:bold;
+}
+.searchbox {
+  margin-left:40px;
+}
+

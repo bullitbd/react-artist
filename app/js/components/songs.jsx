@@ -7,7 +7,7 @@ var artistComp = require('../object_compare');
 
 var SongArtist = React.createClass({
 	render: function() {
-		return (<tr><th colSpan="3" className="artistTitle">{this.props.artist}</th></tr>);
+		return (<tr><th colSpan="5" className="artistTitle">{this.props.artist}</th></tr>);
 	}
 });
 
@@ -18,6 +18,8 @@ var SongData = React.createClass({
 				<td>{this.props.song.title}</td>
 				<td>{this.props.song.album}</td>
 				<td>{this.props.song.release}</td>
+				<td>{this.props.song.label}</td>
+				<td>{this.props.song.genre}</td>
 			</tr>
 		)
 	}
@@ -42,6 +44,8 @@ var SongInfo = React.createClass({
 						<th>Title</th>
 						<th>Album</th>
 						<th>Released</th>
+						<th>Label</th>
+						<th>Genre</th>
 					</tr>
 				</thead>
 				<tbody>{rows}</tbody>
@@ -54,7 +58,8 @@ var SearchBar = React.createClass({
 	render: function() {
 		return (
 			<form>
-				<input type="text" placeholder="Search..." />
+				<label className="title" for="searchbox"><strong>SONGS</strong></label>
+				<input className="searchbox" type="text" placeholder="Search..." />
 				<br/>
 			</form>
 		);
@@ -63,23 +68,21 @@ var SearchBar = React.createClass({
 
 var ArtistSearch = React.createClass({
 	getInitialState: function() {
-		return {songs: [], title: "Songs :"};
+		return {songs: []};
 	},
 
-	componentDidMount: function() {
+	componentWillMount: function() {
 		request
 			.get('/api/songs')
 			.end(function(err, res) {
 				if (err) console.log(err);
 				res.body.sort(artistComp);
 				this.setState({songs: res.body})
-				console.log(res.body);
 			}.bind(this));
 
 	},
 
 	render: function() {
-		//console.log(this.props.songs);
 		return (
 			<div>
 				<SearchBar />
